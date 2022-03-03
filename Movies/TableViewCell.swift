@@ -7,9 +7,18 @@
 
 import UIKit
 
+protocol GenreTableViewCellDelegate: AnyObject {
+    func didSelect(movie: Films)
+}
+
 class TableViewCell: UITableViewCell {
     
-
+    public weak var delegate: GenreTableViewCellDelegate?
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    private var content: [Films] = []
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,18 +30,22 @@ class TableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-//    func configure(with movies: Content)
+    func configure(with movies: [Films]) {
+        content = movies
+        collectionView.reloadData()
+    }
 
 }
 
 extension TableViewCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return content.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "videoCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "videoCell", for: indexPath) as! CollectionViewCell
+        cell.configure(with: content[indexPath.item])
             return cell
     }
     
@@ -48,4 +61,11 @@ extension TableViewCell : UICollectionViewDelegateFlowLayout {
         return CGSize(width: itemWidth, height: itemHeight)
     }
     
+}
+
+extension TableViewCell: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.didSelect(movie: content[indexPath.item])
+ }
 }

@@ -9,10 +9,12 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
-    private var movies: Content?
+    var movies: Content?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.rowHeight = 200
 
         fetchData(from: URLConstants.apiMovies)
 //        fetchFilms(from: URLConstants.apiMovies)
@@ -22,7 +24,7 @@ class TableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return movies?.content?.count ?? 0
+        return movies?.content.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -30,17 +32,22 @@ class TableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return movies?.content?.count ?? 0
+//        return movies?.content?.randomElement()?.content?.count ?? 1
+//        return movies?.content?[0].content?.count ?? 1
         return 1
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
-//        let movies = movies?.content?[indexPath.row]
-//        cell.nameMoviesLabel.text = movies?.title?.rawValue
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? TableViewCell else { return UITableViewCell() }
+        let movies = movies?.content[indexPath.section]
+        cell.configure(with: movies?.content ?? [])
+        cell.delegate = self
         return cell
     }
+    
+ 
+
     
     /*
     // Override to support conditional editing of the table view.
@@ -77,15 +84,15 @@ class TableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+  
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if let detailVC = segue.destination as? MoviDetailVC {
+//            detailVC.configure(with: movies!.content.first!.content.first!)
+//        }
+//    }
+  
     
     private func fetchData(from url: String?) {
         NetworkManager.shared.fetchData(from: url) { movies in
@@ -93,5 +100,15 @@ class TableViewController: UITableViewController {
             print(movies)
             self.tableView.reloadData()
         }
+    }
+}
+
+extension TableViewController: GenreTableViewCellDelegate {
+    
+    func didSelect(movie: Films) {
+        if let detailVC = storyboard?.instantiateViewController(withIdentifier: "MoviDetailVC") as? MoviDetailVC {
+        detailVC.configure(with: movie)
+        navigationController?.pushViewController(detailVC, animated: true)
+      }
     }
 }

@@ -14,27 +14,31 @@ import Foundation
 ///  доступные языки для просмотра +
 
 struct Content: Decodable {
-    let content: [GenreElement]?
+    let content: [GenreElement]
 }
 
 struct GenreElement: Decodable {
-    let title: Title?
-    let content: [Films]?
+    let title: Title
+    let content: [Films]
 }
 
 struct Films: Decodable {
-    let title: String?
-    let cover: Cover?
-    let created_at: String?
-    let languages: [Language]?
+    let title: String
+    let cover: Cover
+    let created_at: String
+    let languages: [Language]
 }
 
 struct Cover: Decodable {
-    let id: String?
+    let id: String
+    
+    var imageURL: URL? {
+        URL(string: "https://www.signalmediacorp.com/b/c/\(id).jpg")
+    }
 }
 
 struct Language: Decodable {
-    let title: String?
+    let title: String
 }
 
 enum Title: String, Codable, CaseIterable {
