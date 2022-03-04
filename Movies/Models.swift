@@ -42,11 +42,10 @@ struct Language: Decodable {
 }
 
 enum Title: String, Codable, CaseIterable {
-    case animation = "Animation "
-    case docsFactual = "Docs & factual"
     case drama = "Drama"
-    case featureFilms = "Feature films"
+    case docsFactual = "Docs & factual"
     case theatralicalDistribution = "Theatralical distribution"
-    
+    case featureFilms = "Feature films"
+    case animation = "Animation "
 }
 

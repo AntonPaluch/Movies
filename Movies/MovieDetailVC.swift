@@ -7,19 +7,18 @@
 
 import UIKit
 
-class MoviDetailVC: UIViewController {
+class MovieDetailVC: UIViewController {
     
     private var movie: Films?
     private var image: UIImage?
 
     @IBOutlet weak var imageViewMove: UIImageView!
-    @IBOutlet weak var nameMoveLabel: UILabel!
-    @IBOutlet weak var dataOfMove: UILabel!
-    @IBOutlet weak var languageMove: UILabel!
+    @IBOutlet weak var nameMovieLabel: UILabel!
+    @IBOutlet weak var dataOfMovie: UILabel!
+    @IBOutlet weak var languageMovie: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         updateUI()
     }
     
@@ -39,13 +38,13 @@ class MoviDetailVC: UIViewController {
     func updateUI() {
         imageViewMove?.image = image
         if let movie = movie {
-        nameMoveLabel?.text = movie.title
-        dataOfMove?.text = movie.created_at
-        languageMove?.text = movie.languages.map({$0.title}).joined(separator: ", ")
+        nameMovieLabel?.text = movie.title
+        dataOfMovie?.text = movie.created_at
+        languageMovie?.text = movie.languages.map({$0.title}).joined(separator: ", ")
         } else {
-            nameMoveLabel?.text = nil
-            dataOfMove?.text = nil
-            languageMove?.text = nil
+            nameMovieLabel?.text = nil
+            dataOfMovie?.text = nil
+            languageMovie?.text = nil
         }
     }
 

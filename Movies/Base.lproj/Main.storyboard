@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DFm-qb-l4l">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -60,7 +61,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="3Ws-MG-4aB" secondAttribute="bottom" id="56H-NQ-QVJ"/>
                                                             <constraint firstItem="3Ws-MG-4aB" firstAttribute="leading" secondItem="eMa-w2-Ltf" secondAttribute="leading" id="98m-6p-YSZ"/>
@@ -110,10 +111,10 @@
             </objects>
             <point key="canvasLocation" x="1863.7681159420292" y="54.910714285714285"/>
         </scene>
-        <!--Movi DetailVC-->
+        <!--Movie DetailVC-->
         <scene sceneID="fiC-Do-JDy">
             <objects>
-                <viewController storyboardIdentifier="MoviDetailVC" id="wA2-ta-6Dy" customClass="MoviDetailVC" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MoviDetailVC" id="wA2-ta-6Dy" customClass="MovieDetailVC" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z64-VR-b0C">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -170,10 +171,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="Sbp-7E-eez"/>
                     <connections>
-                        <outlet property="dataOfMove" destination="ZcD-QH-mf2" id="RcX-dW-OSU"/>
+                        <outlet property="dataOfMovie" destination="ZcD-QH-mf2" id="RcX-dW-OSU"/>
                         <outlet property="imageViewMove" destination="GmU-QA-Mxh" id="uVE-y0-uc3"/>
-                        <outlet property="languageMove" destination="i3e-Pp-Q1C" id="Pge-5M-ugH"/>
-                        <outlet property="nameMoveLabel" destination="fK3-Rt-6YZ" id="VBy-6t-Yo0"/>
+                        <outlet property="languageMovie" destination="i3e-Pp-Q1C" id="Pge-5M-ugH"/>
+                        <outlet property="nameMovieLabel" destination="fK3-Rt-6YZ" id="VBy-6t-Yo0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="774-rj-pul" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
