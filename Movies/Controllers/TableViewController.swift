@@ -38,7 +38,7 @@ class TableViewController: UITableViewController {
         cell.delegate = self
         return cell
     }
-
+    
     private func fetchData(from url: String?) {
         NetworkManager.shared.fetchData(from: url) { movies in
             self.movies = movies

@@ -14,19 +14,10 @@ protocol GenreTableViewCellDelegate: AnyObject {
 class TableViewCell: UITableViewCell {
     
     public weak var delegate: GenreTableViewCellDelegate?
-    
-    @IBOutlet weak var collectionView: UICollectionView!
-    
     private var content: [Films] = []
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
+    @IBOutlet weak var collectionView: UICollectionView!
+        
     func configure(with movies: [Films]) {
         content = movies
         collectionView.reloadData()

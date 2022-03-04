@@ -35,10 +35,7 @@ class NetworkManager {
             } catch let error {
                 print(error)
             }
-
         } .resume()
     }
-    
-    
     
 }
