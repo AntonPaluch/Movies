@@ -26,7 +26,7 @@ class ImageManager {
                     data != nil,
                     let response = response as? HTTPURLResponse,
                     response.statusCode == 200,
-                    let `self` = self else {
+                    let self = self else {
                         return
                 }
                 guard let image = UIImage(data: data!) else { return }
