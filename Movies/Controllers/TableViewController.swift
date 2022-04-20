@@ -42,7 +42,6 @@ class TableViewController: UITableViewController {
     private func fetchData(from url: String?) {
         NetworkManager.shared.fetchData(from: url) { movies in
             self.movies = movies
-            print(movies)
             self.tableView.reloadData()
         }
     }
